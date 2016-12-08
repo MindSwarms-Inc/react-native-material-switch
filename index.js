@@ -9,7 +9,6 @@ var {
 } = ReactNative;
 
 var MaterialSwitch = React.createClass({
-  padding: 2,
 
   getDefaultProps() {
     return {
@@ -31,6 +30,7 @@ var MaterialSwitch = React.createClass({
       switchWidth: 40,
       switchHeight: 20,
       buttonContent: null,
+      padding: 2,
       enableSlide: true,
       switchAnimationTime: 200,
       onActivate: function() {},
@@ -192,12 +192,12 @@ var MaterialSwitch = React.createClass({
   },
 
   render() {
-    var doublePadding = this.padding*2-2;
+    var doublePadding = this.props.padding*2-2;
     var halfPadding = doublePadding/2;
     return (
       <View
         {...this._panResponder.panHandlers}
-        style={{padding: this.padding, position: 'relative'}}>
+        style={[{padding: this.padding, position: 'relative'}, this.props.style]}>
         <View
           style={{
             backgroundColor: this.state.state ? this.props.activeBackgroundColor : this.props.inactiveBackgroundColor,
