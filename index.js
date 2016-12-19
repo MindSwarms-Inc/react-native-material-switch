@@ -123,6 +123,14 @@ var MaterialSwitch = React.createClass({
     });
   },
 
+  componentWillReceiveProps(nextProps) {
+    var w = this.props.switchWidth - Math.min(this.props.switchHeight, this.props.buttonRadius*2);
+    this.setState({
+      state: nextProps.active,
+      position: new Animated.Value(nextProps.active ? w : 0),
+    });
+  },
+
   onSwipe(currentPosition, startingPosition, onChange, onTerminate) {
     if (currentPosition-startingPosition >= 0) {
       if (currentPosition-startingPosition > this.state.width/2 || startingPosition == this.state.width) {
